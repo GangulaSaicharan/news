@@ -31,6 +31,7 @@ const AuthGuard = props => {
     [router.route]
   )
   if (auth.loading || auth.user === null) {
+    // console.log('in loadind if in authgaurd', fallback)
     return fallback
   }
 
