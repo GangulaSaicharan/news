@@ -24,7 +24,7 @@ const navigation = () => {
       icon: 'tabler:mail'
     },
     {
-      path: '/acl',
+      path: '/admin/acl',
       action: 'read',
       subject: 'acl-page',
       title: 'Access Control',

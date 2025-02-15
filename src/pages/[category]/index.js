@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+import navigation from 'src/configs/navigation'
 
 // ** Component
 const Category = ({ category }) => {
@@ -21,15 +22,28 @@ const Category = ({ category }) => {
   )
 }
 
+// export const getStaticPaths = async () => {
+//   // Call the navigation function to get paths dynamically
+//   const categories = navigation().map(item => item.path.split('/')[1])
+//   const paths = categories.map(category => ({
+//     params: { category }
+//   }))
+
+//   return { paths, fallback: false }
+// }
+
 export const getStaticPaths = async () => {
-  // Call the navigation function to get paths dynamically
-  const categories = navigation().map(item => item.path.split('/')[1])
+  const categories = navigation()
+    .map(item => item.path.split('/')[1]) // Extract category
+    .filter(category => category !== '' && category !== undefined) // ✅ Remove empty values
+
   const paths = categories.map(category => ({
     params: { category }
   }))
 
   return { paths, fallback: false }
 }
+
 export const getStaticProps = async ({ params }) => {
   const { category } = params
 

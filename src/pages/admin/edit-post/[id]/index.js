@@ -224,7 +224,9 @@ const EditPost = () => {
             onChange={handleChange}
           >
             {newsTypes.map(news => (
-              <MenuItem value={news.value}>{news.label}</MenuItem>
+              <MenuItem key={news.value} value={news.value}>
+                {news.label}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
