@@ -12,7 +12,10 @@ export const config = {
   }
 }
 
-export default async function POST(req, res) {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' })
+  }
   console.log('POST method called')
   const uploadDir = path.join(process.cwd(), 'public/uploads')
   if (!fs.existsSync(uploadDir)) {
