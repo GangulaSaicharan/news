@@ -412,10 +412,6 @@ const CreatePost = () => {
         }
       })
       toast.success('Post created successfully')
-    } catch (error) {
-      console.error('Error creating post:', error)
-      toast.error(error.message)
-    } finally {
       setState({
         title: '',
         englishTitle: '',
@@ -431,6 +427,10 @@ const CreatePost = () => {
         newsType: 'normal',
         loading: false
       })
+    } catch (error) {
+      console.error('Error creating post:', error)
+      toast.error(error.message)
+    } finally {
     }
   }
 
