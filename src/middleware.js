@@ -40,7 +40,9 @@ const allowedOrigins = [
   'https://sd4wd62q-3000.inc1.devtunnels.ms',
   'https://sd4wd62q-3001.inc1.devtunnels.ms',
   'http://localhost:3000',
-  'http://localhost:3001'
+  'http://localhost:3001',
+  process.env.BASE_URL,
+  process.env.WEBSITE_URL
 ]
 
 // .filter(Boolean) // Remove undefined values
