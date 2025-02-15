@@ -342,13 +342,6 @@ const CreatePost = () => {
     setState(prev => ({ ...prev, [name]: value }))
   }
 
-  // const handleFileChange = event => {
-  //   const files = event.target.files
-  //   if (files.length > 0) {
-  //     setState(prev => ({ ...prev, images: files })) // Store FileList directly
-  //   }
-  // }
-
   const handleFileChange = event => {
     const files = event.target.files
     if (files.length > 0) {
@@ -364,6 +357,21 @@ const CreatePost = () => {
 
     if (!state.images || state.images.length === 0) {
       return toast.error('Please upload at least one image')
+    }
+
+    if (
+      !state.title ||
+      !state.englishTitle ||
+      !state.subtitle ||
+      !state.slug ||
+      !state.content ||
+      !state.mainCategory ||
+      !state.secondCategory ||
+      !state.newsType ||
+      !state.hashtags ||
+      !state.keywords
+    ) {
+      return toast.error('Please fill in all the required fields')
     }
 
     setState(prev => ({ ...prev, loading: true }))

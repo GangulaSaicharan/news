@@ -10,7 +10,7 @@ export const config = {
   }
 }
 
-export default async function POST(req, res) {
+export default async function handler(req, res) {
   console.log('POST method called')
   const form = new IncomingForm()
   form.uploadDir = './'

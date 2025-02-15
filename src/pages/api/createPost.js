@@ -1,5 +1,5 @@
 import { IncomingForm } from 'formidable'
-import { uploadFiles } from 'src/lib/cloudinary-upload'
+import { clearUploadFolder, uploadFiles } from 'src/lib/cloudinary-upload'
 import dbConnect from 'src/lib/mongodb'
 import post from 'src/models/post'
 import path from 'path'
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' })
   }
   console.log('POST method called')
-  const uploadDir = path.join(process.cwd(), 'public/uploads')
+  const uploadDir = path.join('/tmp', 'uploads')
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true })
   }
@@ -51,8 +51,8 @@ export default async function handler(req, res) {
       uploadedImages = await uploadFiles(imagesArray, 'test')
     }
     console.log(imgs, 'imgs')
-    await fs.rm(uploadDir, { recursive: true, force: true }) // ✅ Fix: No callback
 
+    await clearUploadFolder(uploadDir)
     // return res.status(200).json({ uploadedImages })
 
     await dbConnect()

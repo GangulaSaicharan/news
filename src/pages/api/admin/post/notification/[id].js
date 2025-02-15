@@ -3,7 +3,7 @@ import dbConnect from 'src/lib/mongodb'
 import fcmToken from 'src/models/fcmToken'
 import post from 'src/models/post'
 
-export default async function POST(req, res) {
+export default async function handler(req, res) {
   try {
     const id = req.query.id
     await dbConnect()

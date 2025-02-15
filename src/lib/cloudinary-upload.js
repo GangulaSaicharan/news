@@ -1,5 +1,6 @@
 import cloudinary from 'cloudinary'
-
+import fs from 'fs'
+import path from 'path'
 // Configure Cloudinary with your credentials
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -83,4 +84,17 @@ const deleteFiles = async files => {
   // }
 }
 
-export { deleteFiles, uploadFiles }
+async function clearUploadFolder(uploadDir) {
+  console.log('uploadDir: ', uploadDir)
+  try {
+    const files = await fs.promises.readdir(uploadDir) // ✅ Corrected method
+    for (const file of files) {
+      await fs.promises.unlink(path.join(uploadDir, file)) // ✅ Correctly remove each file
+    }
+    console.log('tmp Upload folder cleared successfully')
+  } catch (err) {
+    console.error('Error clearing upload folder:', err)
+  }
+}
+
+export { deleteFiles, uploadFiles, clearUploadFolder }

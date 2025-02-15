@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { v4 as uuidv4 } from 'uuid'
+
 const FcmTokenSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }, // Optional
   userUuid: {
